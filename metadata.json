@@ -1,0 +1,6 @@
+{
+  "name": "CVSTEC — Bio & Portfolio Hub",
+  "description": "Bio profissional e portfólio de tecnologia e inovação digital da CVSTEC. Conecte-se via Instagram, YouTube e WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

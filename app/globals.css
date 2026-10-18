@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #111111;
+    --surface-dark: #1a1a1a;
+    --border-dark: #333333;
+    --brand-red: #E30613;
+    --brand-red-glow: rgba(227, 6, 19, 0.4);
+    --text-primary: #FFFFFF;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keyframes for rotating light beam on card borders */
+@keyframes beam-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* Light Beam Border Effect */
+.light-beam-wrapper {
+  position: relative;
+  border-radius: 1rem;
+  padding: 1.5px;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.light-beam-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 220deg,
+    rgba(227, 6, 19, 0.25) 280deg,
+    rgba(227, 6, 19, 0.8) 330deg,
+    #FFFFFF 355deg,
+    #E30613 360deg
+  );
+  animation: beam-rotate 4s linear infinite;
+  opacity: 0.15;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.light-beam-wrapper:hover::before,
+.light-beam-wrapper:focus-within::before,
+.light-beam-wrapper:active::before {
+  opacity: 1;
+  animation-duration: 2.2s;
+}
+
+.light-beam-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(227, 6, 19, 0.25), 0 0 15px 1px rgba(227, 6, 19, 0.15);
+}
+
+.light-beam-wrapper:active {
+  transform: scale(0.985);
+}
+
+.light-beam-content {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(1rem - 1.5px);
+  width: 100%;
+  height: 100%;
+}
